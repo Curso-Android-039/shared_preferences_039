@@ -31,6 +31,9 @@ class MainViewModel(application: Application): AndroidViewModel(application){
 
      fun setEmailToPreferences( emailKey : String , email : String, keykey : String , key : String){
           myModel.setEmailPreferences(emailKey,email,keykey, key)
+
+                 _emailLiveData.value = email
+         _emailKeyLiveData.value = key
      }
 
 
@@ -38,6 +41,10 @@ class MainViewModel(application: Application): AndroidViewModel(application){
     fun removeEmailAndKeyFromPreferences (emailKey: String, keykey: String){
 
      myModel.removeEmailAndKeyFromPreferences(emailKey,keykey)
+
+        // Actualiza los LiveData después de eliminar los datos de SharedPreferences
+        _emailLiveData.value = null
+        _emailKeyLiveData.value = null
     }
 
 
